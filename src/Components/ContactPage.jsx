@@ -8,37 +8,32 @@ const ContactPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // Function to send message via WhatsApp
   const handleWhatsApp = (e) => {
-    e.preventDefault(); // Prevent form submission
-    setError(""); // Reset error
+    e.preventDefault();
+    setError("");
 
     if (!name.trim() || !message.trim()) {
       setError("Please enter your name and message.");
       return;
     }
 
-    const phoneNumber = "918122972480"; // Replace with your WhatsApp number
+    const phoneNumber = "918122972480";
     const text = encodeURIComponent(`Hello, my name is ${name}.\n\n${message}`);
 
     window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
 
-    // Show success message
     setSuccess(true);
-
-    // Clear form fields after sending
     setName("");
     setMessage("");
 
-    // Hide success message after 3 seconds
     setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
-    <div className="bg-[#0A192F] min-h-screen flex flex-col items-center justify-center px-10 py-20">
+    <div className="bg-[#0A192F] min-h-screen flex flex-col items-center justify-center px-6 py-16 md:px-16">
       {/* Heading */}
       <motion.h1
-        className="text-5xl font-bold text-[#fafafa] mb-8"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#fafafa] mb-6 sm:mb-8"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -47,17 +42,14 @@ const ContactPage = () => {
       </motion.h1>
 
       {/* Contact Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-4xl">
+      <div className="flex flex-col md:flex-row gap-10 w-full max-w-4xl">
         {/* Contact Info */}
-        <div className="border border-gray-600 rounded-lg p-6 bg-[#0A192F] shadow-md hover:shadow-lg transition-shadow duration-300 hover:shadow-blue-400">
-          <h3 className="text-2xl text-white font-semibold mb-6">Get in Touch</h3>
+        <div className="border border-gray-600 rounded-lg p-6 bg-[#0A192F] shadow-md hover:shadow-lg transition-shadow duration-300 hover:shadow-blue-400 w-full md:w-1/2">
+          <h3 className="text-xl sm:text-2xl text-white font-semibold mb-6">Get in Touch</h3>
           <div className="space-y-4">
             <div className="flex items-center space-x-3 text-white">
               <FaEnvelope className="text-[#64FFDA]" />
-              <a
-                href="mailto:navirathinam2k27@gmail.com"
-                className="text-blue-400 hover:underline"
-              >
+              <a href="mailto:navirathinam2k27@gmail.com" className="text-blue-400 hover:underline">
                 navirathinam2k27@gmail.com
               </a>
             </div>
@@ -84,8 +76,8 @@ const ContactPage = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="border border-gray-600 rounded-lg p-6 bg-[#0A192F] shadow-md hover:shadow-lg transition-shadow duration-300 hover:shadow-blue-400">
-          <h3 className="text-2xl text-white font-semibold mb-6">Send a Message</h3>
+        <div className="border border-gray-600 rounded-lg p-6 bg-[#0A192F] shadow-md hover:shadow-lg transition-shadow duration-300 hover:shadow-blue-400 w-full md:w-1/2">
+          <h3 className="text-xl sm:text-2xl text-white font-semibold mb-6">Send a Message</h3>
 
           {/* Success Message */}
           {success && (
@@ -115,14 +107,14 @@ const ContactPage = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full p-3 rounded bg-gray-700 text-white"
+              className="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#64FFDA] transition-all duration-300"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
             <textarea
               placeholder="Your Message"
-              className="w-full p-3 rounded bg-gray-700 text-white h-32"
+              className="w-full p-3 rounded bg-gray-700 text-white h-32 focus:outline-none focus:ring-2 focus:ring-[#64FFDA] transition-all duration-300"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
